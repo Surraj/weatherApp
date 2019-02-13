@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Weather Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm"></ion-searchbar>
+  <ion-button color="primary" shape="round" (click)="searchChanged($event)"><ion-icon slot="end" name="search"></ion-icon>Search</ion-button>
+ 
+ <ion-list>
+    <ion-item button *ngFor = "let item of (results | async)" [routerLink]="['/', 'weather', item.id]">
+    		<ion-avatar slot="start">
+        <img src="https://openweathermap.org/img/w/{{item.weather[0].icon}}.png" *ngIf="item.Poster != 'N/A'">
+      </ion-avatar>
+      <ion-label text-wrap>	
+        <h3>{{ item.weather[0].main }}</h3>
+    </ion-label>
+
+    </ion-item>
+ 
+  </ion-list>
+ 
+</ion-content>
